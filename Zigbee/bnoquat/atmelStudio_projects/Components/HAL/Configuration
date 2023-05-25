@@ -1,0 +1,145 @@
+#-------------------------------------------------------------------------------
+#  \file Configuration
+#
+#  \brief Declares build options for HAL.
+#
+#  \author
+#    Atmel Corporation: http://www.atmel.com \n
+#    Support email: avr@atmel.com
+#
+#  Copyright (c) 2008-2015, Atmel Corporation. All rights reserved.
+#  Licensed under Atmel's Limited License Agreement (BitCloudTM).
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Build configuration:
+#  DEBUG - system asserts, logging and debug info are switched on
+#  RELEASE - system asserts, logging and debug info are switched off
+#-------------------------------------------------------------------------------
+BUILD_CONFIGURATION = RELEASE
+#BUILD_CONFIGURATION = DEBUG
+
+#-------------------------------------------------------------------------------
+# Build configuration:
+#  If QUIET is TRUE then short build message format is used, otherwise - normal.
+#-------------------------------------------------------------------------------
+QUIET = TRUE
+#QUIET = FALSE
+
+#-------------------------------------------------------------------------------
+# Compiler type:
+#-------------------------------------------------------------------------------
+#COMPILER_TYPE = GCC
+ COMPILER_TYPE = IAR
+
+#-------------------------------------------------------------------------------
+# Device type declaration:
+#-------------------------------------------------------------------------------
+#STACK_TYPE = ZGPDEVICE
+#-------------------------------------------------------------------------------
+# Platforms selection:
+#-------------------------------------------------------------------------------
+ PLATFORM = PLATFORM_MEGARF
+
+#-------------------------------------------------------------------------------
+# PLATFORM_RCB platform specific options:
+#-------------------------------------------------------------------------------
+ifeq ($(PLATFORM), PLATFORM_MEGARF)
+  # HAL types  
+  HAL = ATMEGA256RFR2
+  #HAL = ATMEGA2564RFR2
+  
+  # Controller's reference frequency
+  HAL_FREQUENCY = HAL_8MHz
+  #HAL_FREQUENCY = HAL_16MHz
+
+  # Accessible periphery
+  USART = TRUE
+  #USART = FALSE
+
+  EXT_INTERRUPT = TRUE
+  #EXT_INTERRUPT = FALSE
+
+  PC_INTERRUPT = TRUE
+  # PC_INTERRUPT = FALSE
+
+  TWI = TRUE
+  #TWI = FALSE
+
+  ADC = TRUE
+  #ADC = FALSE
+
+  EEPROM = TRUE
+  #EEPROM = FALSE
+
+  1WIRE = TRUE
+  #1WIRE = FALSE
+
+  PWM = TRUE
+  #PWM = FALSE
+
+  WDT = TRUE
+  #WDT = FALSE
+
+  # Only for single chip based platforms
+  HW_AES = TRUE
+  #HW_AES = FALSE
+
+  # Only for single chip based platforms
+  # Use USART in SPI mode on others
+  SPI = TRUE
+  #SPI = FALSE
+
+  # Use program memory access interface.
+  INTERNAL_FLASH_ACCESS = TRUE
+  #INTERNAL_FLASH_ACCESS = FALSE
+
+  # Use nonstandard sleep timer reload interval. Supported only for AVR.
+  #USE_NONSTD_ST_RELOAD_INTERVAL = TRUE
+  USE_NONSTD_ST_RELOAD_INTERVAL = FALSE
+
+  # Only for ATmega128RFA1.
+  # If the asynchronous timer is disabled the platform will lose
+  # the functionality of waking up periodically.
+  ASYNCHRONOUS_TIMER = TRUE
+  #ASYNCHRONOUS_TIMER = FALSE
+
+  # Note that BitCloud uses the following HAL components
+  # (all of which are also accessible to an application):
+  # application timer, asynchronous timer,
+  # sleep routine
+endif # PLATFORM_MEGARF
+
+#-------------------------------------------------------------------------------
+# OS selection (only for ARM):
+#-------------------------------------------------------------------------------
+OS = NONE_OS
+#OS = FREE_RTOS
+
+# Gives a possibility to enable USART error callbacks
+HAL_USE_USART_ERROR_EVENT = FALSE
+#HAL_USE_USART_ERROR_EVENT = TRUE
+
+# Gives a possibility to enable USB error callbacks
+HAL_USE_USB_ERROR_EVENT = FALSE
+#HAL_USE_USB_ERROR_EVENT = TRUE
+
+#RF_RX_TX_INDICATOR
+#HAL_RF_RX_TX_INDICATOR = TRUE
+HAL_RF_RX_TX_INDICATOR = FALSE
+
+#Special sleep mode for WPIRDemo application
+#See PIRRD_board.pdf
+HAL_USE_PIRRD_SPECIAL_SLEEP = FALSE
+#HAL_USE_PIRRD_SPECIAL_SLEEP = TRUE
+
+# Antenna diversity feature
+HAL_ANT_DIVERSITY = FALSE
+#HAL_ANT_DIVERSITY = TRUE
+
+# Use transceiver Deep Sleep mode instead of ordinary sleep, where supported
+HAL_RF_DEEP_SLEEP = FALSE
+#HAL_RF_DEEP_SLEEP = TRUE
+
+# eof Configuration
